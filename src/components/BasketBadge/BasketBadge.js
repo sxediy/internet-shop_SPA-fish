@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Badge, Icon } from 'antd';
 import styles from './BasketBadge.less';
 
-const BasketBadge = ({ count } = 2) => (
+const BasketBadge = ({ count }) => (
   <div className={styles.basketContainer}>
     <Icon type="shopping-cart"/>
     <Badge
@@ -14,7 +14,7 @@ const BasketBadge = ({ count } = 2) => (
 );
 
 BasketBadge.propTypes = {
-  count: PropTypes.string,
+  count: PropTypes.number,
 };
 
 export { BasketBadge };

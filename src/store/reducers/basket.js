@@ -1,4 +1,4 @@
-import { PUT_PRODUCT_TO_BASKET } from '../actionTypes';
+import { PUT_PRODUCT_TO_BASKET, DELETE_PRODUCT_IN_BASKET } from '../actionTypes';
 
 const basket = (state = [], action) => {
   switch (action.type) {
@@ -12,8 +12,9 @@ const basket = (state = [], action) => {
 
       return [...state.filter(filterFunc), payload];
     }
-    // case REMOVE_DATA:
-    //   return [...state.filter(picture => picture.id !== action.payload)];
+    case DELETE_PRODUCT_IN_BASKET: {
+      return [...state.filter(product => product.id !== action.payload.id)];
+    }
     default:
       return state;
   }

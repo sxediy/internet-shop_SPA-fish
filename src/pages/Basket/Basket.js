@@ -1,35 +1,62 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { REQUEST_DATA } from 'store/actionTypes';
+import { Table } from 'antd';
+
+import { DELETE_PRODUCT_IN_BASKET } from 'store/actionTypes';
+import { PageTitle } from 'components/PageTitle/PageTitle';
+import { EmptyComponent } from 'components/EmptyComponent/EmptyComponent';
 
 import styles from './Basket.less';
 
-const Basket = ({ func, basket }) => {
-  console.log(func, basket);
+const { Column } = Table;
+
+const Basket = ({ basket, changeBasket }) => {
+  const renderBasket = () => (
+    <Fragment>
+      <PageTitle title='Корзина' />
+      <div className={styles.basketContainer}>
+        <Table dataSource={basket} pagination={false}>
+          <Column title="Наименование" dataIndex="product" key="product" />
+          <Column title="Количество" dataIndex="count" key="count" />
+          <Column title="Сумма" dataIndex="price" key="price" />
+          <Column
+            title="Action"
+            key="action"
+            render={(product) => (
+              <div onClick={() => changeBasket(product)}>
+                 Delete
+              </div>
+            )}
+          />
+        </Table>
+      </div>
+    </Fragment>
+  );
+
 
   return (
     <div className={styles.pageContainer}>
-      null
+      {basket.length > 0 ? renderBasket() : <EmptyComponent /> }
     </div>
   );
 };
 
 Basket.propTypes = {
-  func: PropTypes.func,
-  basket: PropTypes.object,
+  basket: PropTypes.array,
+  changeBasket: PropTypes.func,
 };
 
 
 const mapStateToProps = ({ basket }) => (
   {
-    basket: basket.some_property
+    basket
   }
 );
 
 const mapDispatchToProps = (dispatch) => (
   {
-    func: () => dispatch({ type: REQUEST_DATA })
+    changeBasket: (product) => dispatch({ type: DELETE_PRODUCT_IN_BASKET, payload: product })
   }
 );
 
