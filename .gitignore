@@ -1,0 +1,15 @@
+node_modules
+*~
+*.log
+*.orig
+.idea
+.vscode
+.eslintcache
+.package-lock.json
+.DS_Store
+/build
+.gitlab-ci.yml
+default.conf
+Dockerfile
+.dockerignore
+

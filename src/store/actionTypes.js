@@ -1,0 +1,15 @@
+
+export const REQUEST_DATA = 'REQUEST_DATA';
+export const PROCESS_JSON = 'PROCESS_JSON';
+export const RECEIVE_DATA = 'RECEIVE_DATA';
+export const FAIL_LOAD = 'FAIL_LOAD';
+
+export const GET_PRODUCTS = 'GET_PRODUCTS';
+export const PUT_TO_STORE_DATA = 'PUT_TO_STORE_DATA';
+export const FAILED_PROCESSING_DATA = 'FAILED_PROCESSING_DATA';
+
+export const PUT_PRODUCT_TO_BASKET = 'PUT_PRODUCT_TO_BASKET';
+
+
+export const ADD_DATA = 'ADD_DATA';
+export const REMOVE_DATA = 'REMOVE_DATA';
