@@ -4,7 +4,7 @@ import {
   Card,
 } from 'antd';
 
-import { BuyButton } from 'components/BuyButton/BuyButton';
+import { BuyButton } from 'components/Buttons/BuyButton';
 
 import styles from './Merce.less';
 

@@ -4,18 +4,19 @@ import PropTypes from 'prop-types';
 import {
   Table,
   Icon,
-  Button,
   Progress
 } from 'antd';
-
-import { DELETE_PRODUCT_FROM_BASKET, CHANGE_PRODUCT_IN_BASKET } from 'store/actionTypes';
+import { CheckoutButton } from 'components/Buttons/CheckoutButton';
 import { EmptyComponent } from 'components/EmptyComponent/EmptyComponent';
-
+import { DELETE_PRODUCT_FROM_BASKET, CHANGE_PRODUCT_IN_BASKET } from 'store/actionTypes';
 import styles from './Basket.less';
+
 
 const { Column } = Table;
 
+// eslint-disable-next-line padded-blocks
 const Basket = ({ basket, deleteProduct, changeProduct }) => {
+
   const renderDeleteIcon = (product) => (
     <div onClick={() => deleteProduct(product)}>
       <Icon type="delete" />
@@ -64,14 +65,7 @@ const Basket = ({ basket, deleteProduct, changeProduct }) => {
         <div className={styles.basketProgress}>
           <Progress percent={100} size="small" strokeColor="#84aff4" status="success" />
         </div>
-        <Button
-          type="ghost"
-          shape="round"
-          size="large"
-          onClick={() => {}}
-        >
-          <h3>Checkout</h3>
-        </Button>
+        <CheckoutButton funcClick={() => {}}/>
       </div>
     </Fragment>
   );
