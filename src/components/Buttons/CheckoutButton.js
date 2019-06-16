@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Button } from 'antd';
-// import styles from './CheckoutButton.less';
+import styles from './CheckoutButton.less';
 
 const CheckoutButton = ({ funcClick, path }) => (
   <Button
@@ -11,7 +11,12 @@ const CheckoutButton = ({ funcClick, path }) => (
     size="large"
     onClick={funcClick}
   >
-    <Link to={path}><h3>Перейти к оформлению заказа</h3></Link>
+    <Link
+      to={path}>
+      <span className={styles.checkoutTitle}>
+        Перейти к оформлению заказа
+      </span>
+    </Link>
   </Button>
 );
 

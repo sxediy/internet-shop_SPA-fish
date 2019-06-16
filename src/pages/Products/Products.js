@@ -29,7 +29,7 @@ const Products = ({ getProducts, putProductToBasket, products }) => {
 
   const renderProducts = () => (
     <Fragment>
-      <PageTitle title='Страница с товарами' />
+      <PageTitle title='Меню' />
       <div className={styles.productsContainer}>
         <Row gutter={8}>
           {productsOnCurrentPage.map(product => (

@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { PageHeader, message } from 'antd';
-import { PageTitle } from 'components/PageTitle/PageTitle';
-// import { EmptyComponent } from 'components/EmptyComponent/EmptyComponent';
+// import { PageTitle } from 'components/PageTitle/PageTitle';
+import { EmptyComponent } from 'components/EmptyComponent/EmptyComponent';
 import { CLEAR_DATA } from 'store/actionTypes';
 import OrderForm from './OrderForm';
 import styles from './Order.less';
@@ -18,7 +18,7 @@ const Order = ({ clearData, order }) => {
 
   const renderOrder = () => (
     <Fragment>
-      <PageTitle title='Оформление заказа' />
+      {/* <PageTitle title='Оформление заказа' /> */}
       <div className={styles.orderContainer}>
         <OrderForm onSubmit={onSubmit}/>
       </div>
@@ -27,14 +27,16 @@ const Order = ({ clearData, order }) => {
 
   return (
     <div className={styles.pageContainer}>
-      {/* {Object.keys(order).length > 0 ? renderOrder() : <EmptyComponent /> } */}
       {Object.keys(order).length > 0 ? renderOrder()
-        : <Link to={'/products'}>
-          <PageHeader
-            title="Назад к странице с товарами"
-            onBack={() => null}
-          />
-        </Link>
+        : <div className={styles.goToProducts}>
+          <Link to={'/products'}>
+            <PageHeader
+              title="Назад к странице с товарами"
+              onBack={() => null}
+            />
+          </Link>
+          <EmptyComponent />
+        </div>
       }
     </div>
   );

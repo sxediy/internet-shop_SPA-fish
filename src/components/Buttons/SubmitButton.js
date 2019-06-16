@@ -1,13 +1,27 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Button } from 'antd';
-// import styles from './SubmitButton.less';
+import classNames from 'classnames';
+import styles from './SubmitButton.less';
 
-const SubmitButton = () => (
+
+const SubmitButton = ({ clickFunc, disabled }) => (
   <Button
-    type="submit" block
+    type="submit"
+    block
+    onClick={clickFunc}
   >
-    <h3>Submit</h3>
+    <span
+      className={classNames([styles.titleSubmitButton], { [styles.disabledButton]: disabled })}>
+        Подтвердить заказ
+    </span>
   </Button>
 );
+
+SubmitButton.propTypes = {
+  clickFunc: PropTypes.func,
+  disabled: PropTypes.bool,
+};
+
 
 export { SubmitButton };

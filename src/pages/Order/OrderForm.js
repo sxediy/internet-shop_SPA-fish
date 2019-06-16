@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Field, reduxForm } from 'redux-form';
-// import { SubmitButton } from 'components/Buttons/SubmitButton';
+import { SubmitButton } from 'components/Buttons/SubmitButton';
+import styles from './Order.less';
 
 const renderField = ({
   input,
@@ -9,11 +10,18 @@ const renderField = ({
   type,
   meta: { touched, error }
 }) => (
-  <div>
+  <div className= {styles.inputFormContainer}>
     <label>{label}</label>
     <div>
-      <input {...input} placeholder={label} type={type} />
-      {touched && ((error && <span>{error}</span>))}
+      <input
+        className= {styles.inputFormContainer}
+        {...input}
+        placeholder={label}
+        type={type}
+      />
+      {touched && ((
+        error && <span className={styles.errorText}>{error}</span>
+      ))}
     </div>
   </div>
 );
@@ -26,26 +34,24 @@ renderField.propTypes = {
 };
 
 const OrderForm = ({ handleSubmit, invalid }) => (
-  <form onSubmit={handleSubmit}>
-    <div>
-      <label htmlFor="name">Name</label>
-      <Field name="name" component={renderField} type="text" />
+  <form className={styles.formContainer} onSubmit={handleSubmit}>
+    <div className={styles.allFieldsContainer}>
+      <div className={styles.fieldContainer}>
+        <label htmlFor="name">Ваше имя</label>
+        <Field name="name" component={renderField} type="text" />
+      </div>
+      <div className={styles.fieldContainer}>
+        <label htmlFor="email">Email</label>
+        <Field name="email" component={renderField} type="email" />
+      </div>
+      <div className={styles.fieldContainer}>
+        <label htmlFor="phone">Мобильный телефон</label>
+        <Field name="phone" component={renderField} type="text" />
+      </div>
     </div>
-    <div>
-      <label htmlFor="email">Email</label>
-      <Field name="email" component={renderField} type="email" />
+    <div className={styles.buttonContainer}>
+      <SubmitButton disabled={invalid} clickFunc={handleSubmit}/>
     </div>
-    <div>
-      <label htmlFor="phone">Phone</label>
-      <Field name="phone" component={renderField} type="text" />
-    </div>
-    {/* <SubmitButton /> */}
-    <button
-      type="submit"
-      disabled={invalid}
-    >
-        Подтвердить заказ
-    </button>
   </form>
 );
 
@@ -58,19 +64,19 @@ OrderForm.propTypes = {
 const validate = (values) => {
   const errors = {};
   if (!values.name) {
-    errors.name = 'Required';
+    errors.name = 'Обязательно для заполнения';
   } else if (values.name.length < 4) {
-    errors.name = 'Имя должно быть более четырех символов';
+    errors.name = 'Введите имя из 4-х или более символов';
   }
   if (!values.email) {
-    errors.email = 'Required';
+    errors.email = 'Обязательно для заполнения';
   } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
-    errors.email = 'Некорректный формат email адреса';
+    errors.email = 'Введите корректный формат email адреса';
   }
   if (!values.phone) {
-    errors.phone = 'Required';
+    errors.phone = 'Обязательно для заполнения';
   } else if (!/^\+[7]{1}[0-9]{10}$/i.test(values.phone)) {
-    errors.phone = 'Первые два символа российского номера телефона +7, далее 9 цифр - получается всего 11 символов';
+    errors.phone = 'Введите номер телефона российского формата +79XXXXXXXXX (всего 11 цифр)';
   }
   return errors;
 };

@@ -68,8 +68,10 @@ const Basket = ({
         </Table>
         <div className={styles.basketProgress}>
           <Progress percent={100} size="small" strokeColor="#84aff4" status="success" />
+        </div >
+        <div className={styles.checkoutButton}>
+          <CheckoutButton funcClick={() => checkout(basket, summaryPrice)} path={'/order'}/>
         </div>
-        <CheckoutButton funcClick={() => checkout(basket, summaryPrice)} path={'/order'}/>
       </div>
     </Fragment>
   );

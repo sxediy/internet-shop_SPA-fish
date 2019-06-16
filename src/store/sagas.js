@@ -3,7 +3,7 @@ import * as products from 'src/products.json';
 
 
 function* sagaPutToStoreData() {
-  yield put({ type: 'PUT_TO_STORE_DATA', payload: products });
+  yield put({ type: 'PUT_TO_STORE_DATA', payload: products.default });
 }
 
 export default function* () {
