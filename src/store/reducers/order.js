@@ -8,7 +8,7 @@ const order = (state = {}, action) => {
       return { ...state, shipment, summaryPrice };
     }
     case SUBMIT_DATA:
-      return { ...state };
+      return {};
     default:
       return state;
   }

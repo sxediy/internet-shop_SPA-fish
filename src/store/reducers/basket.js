@@ -2,6 +2,7 @@ import {
   PUT_PRODUCT_TO_BASKET,
   DELETE_PRODUCT_FROM_BASKET,
   CHANGE_PRODUCT_IN_BASKET,
+  SUBMIT_DATA,
 } from '../actionTypes';
 
 const basket = (state = [], action) => {
@@ -39,6 +40,9 @@ const basket = (state = [], action) => {
       // return [...state.map(mapFunc)];
       return [...state.reduce(reduceFunc, [])];
     }
+
+    case SUBMIT_DATA:
+      return [];
 
     default:
       return state;

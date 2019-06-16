@@ -63,9 +63,7 @@ const Products = ({ getProducts, putProductToBasket, products }) => {
 Products.propTypes = {
   getProducts: PropTypes.func,
   putProductToBasket: PropTypes.func,
-  products: PropTypes.shape({
-    product: PropTypes.object
-  }),
+  products: PropTypes.array,
 };
 
 

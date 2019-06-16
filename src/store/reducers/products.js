@@ -5,7 +5,7 @@ const products = (state = [], action) => {
   const arrayData = action.payload ? Object.values(action.payload) : [];
   switch (action.type) {
     case PUT_TO_STORE_DATA:
-      return [...state, ...arrayData];
+      return [...arrayData];
     default:
       return state;
   }
