@@ -8,7 +8,7 @@ const BasketBadge = ({ count }) => (
     <Icon type="shopping-cart"/>
     <Badge
       count={count}
-      style={{ backgroundColor: '#52c41a' }}
+      style={{ backgroundColor: '#84aff4' }}
     />
   </div>
 );
