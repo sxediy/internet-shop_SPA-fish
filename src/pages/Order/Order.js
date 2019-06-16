@@ -1,18 +1,27 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { PageTitle } from 'components/PageTitle/PageTitle';
 import { EmptyComponent } from 'components/EmptyComponent/EmptyComponent';
 import { SUBMIT_DATA } from 'store/actionTypes';
+import OrderForm from './OrderForm';
 
 import styles from './Order.less';
 
 const Order = ({ submitData, order }) => {
+  const renderOrder = () => (
+    <Fragment>
+      <PageTitle title='Оформление заказа' />
+      <div className={styles.orderContainer}>
+        <OrderForm onSubmit={submitData}/>
+      </div>
+    </Fragment>
+  );
+
   console.log(submitData, order);
   return (
     <div className={styles.pageContainer}>
-      <PageTitle title='Оформление заказа'/>
-      <EmptyComponent />
+      {Object.keys(order).length > 0 ? renderOrder() : <EmptyComponent /> }
     </div>
   );
 };
@@ -25,7 +34,7 @@ Order.propTypes = {
 
 const mapStateToProps = ({ order }) => (
   {
-    order: order.some_property
+    order
   }
 );
 
