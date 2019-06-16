@@ -11,16 +11,17 @@ import styles from './Order.less';
 
 
 const Order = ({ clearData, order }) => {
-  const onSubmit = () => {
+  const onSubmit = (submitDATA) => {
     message.success('Списибо за покупку!', 5);
     clearData();
+    console.log('Данные на сервер', { ...order, submitDATA });
   };
 
   const renderOrder = () => (
     <Fragment>
       {/* <PageTitle title='Оформление заказа' /> */}
       <div className={styles.orderContainer}>
-        <OrderForm onSubmit={onSubmit}/>
+        <OrderForm onSubmit={(submitDATA) => onSubmit(submitDATA)}/>
       </div>
     </Fragment>
   );

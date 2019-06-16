@@ -15,8 +15,24 @@ a {
   .ant-btn > i, .ant-btn > span {
     pointer-events: inherit;
   }
+
+  .ant-pagination-prev .ant-pagination-item-link, .ant-pagination-next .ant-pagination-item-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ant-pagination-item-active {
+    cursor: not-allowed;
+  }
 }
+
 
 input[type='text'], input[type='password'], input[type='email'], input[type='number'], textarea {
   -webkit-appearance: button;
+}
+
+a{
+  cursor: inherit;
 }

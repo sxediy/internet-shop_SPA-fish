@@ -46,7 +46,7 @@ const OrderForm = ({ handleSubmit, invalid }) => (
       </div>
       <div className={styles.fieldContainer}>
         <label htmlFor="phone">Мобильный телефон</label>
-        <Field name="phone" component={renderField} type="text" />
+        <Field name="phone" component={renderField} type="number" />
       </div>
     </div>
     <div className={styles.buttonContainer}>
@@ -75,8 +75,8 @@ const validate = (values) => {
   }
   if (!values.phone) {
     errors.phone = 'Обязательно для заполнения';
-  } else if (!/^\+[7]{1}[0-9]{10}$/i.test(values.phone)) {
-    errors.phone = 'Введите номер телефона российского формата +79XXXXXXXXX (всего 11 цифр)';
+  } else if (!/^[7]{1}[9]{1}[0-9]{9}$/i.test(values.phone)) {
+    errors.phone = 'Введите 11 цифр номера телефона формата 79XXXXXXXXX';
   }
   return errors;
 };
