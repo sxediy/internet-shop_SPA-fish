@@ -8,14 +8,20 @@ import {
 } from 'antd';
 import { CheckoutButton } from 'components/Buttons/CheckoutButton';
 import { EmptyComponent } from 'components/EmptyComponent/EmptyComponent';
-import { DELETE_PRODUCT_FROM_BASKET, CHANGE_PRODUCT_IN_BASKET } from 'store/actionTypes';
+import { DELETE_PRODUCT_FROM_BASKET, CHANGE_PRODUCT_IN_BASKET, CHECKOUT } from 'store/actionTypes';
 import styles from './Basket.less';
 
 
 const { Column } = Table;
 
 // eslint-disable-next-line padded-blocks
-const Basket = ({ basket, deleteProduct, changeProduct }) => {
+const Basket = ({
+  basket,
+  deleteProduct,
+  changeProduct,
+  checkout
+// eslint-disable-next-line padded-blocks
+}) => {
 
   const renderDeleteIcon = (product) => (
     <div onClick={() => deleteProduct(product)}>
@@ -65,7 +71,7 @@ const Basket = ({ basket, deleteProduct, changeProduct }) => {
         <div className={styles.basketProgress}>
           <Progress percent={100} size="small" strokeColor="#84aff4" status="success" />
         </div>
-        <CheckoutButton funcClick={() => {}}/>
+        <CheckoutButton funcClick={checkout} path={'/order'}/>
       </div>
     </Fragment>
   );
@@ -82,6 +88,7 @@ Basket.propTypes = {
   basket: PropTypes.array,
   deleteProduct: PropTypes.func,
   changeProduct: PropTypes.func,
+  checkout: PropTypes.func,
 };
 
 
@@ -94,7 +101,8 @@ const mapStateToProps = ({ basket }) => (
 const mapDispatchToProps = (dispatch) => (
   {
     deleteProduct: (product) => dispatch({ type: DELETE_PRODUCT_FROM_BASKET, payload: product }),
-    changeProduct: (product) => dispatch({ type: CHANGE_PRODUCT_IN_BASKET, payload: product })
+    changeProduct: (product) => dispatch({ type: CHANGE_PRODUCT_IN_BASKET, payload: product }),
+    checkout: () => dispatch({ type: CHECKOUT }),
   }
 );
 
