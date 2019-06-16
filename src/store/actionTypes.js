@@ -1,12 +1,4 @@
 
-export const REQUEST_DATA = 'REQUEST_DATA';
-export const PROCESS_JSON = 'PROCESS_JSON';
-export const RECEIVE_DATA = 'RECEIVE_DATA';
-export const FAIL_LOAD = 'FAIL_LOAD';
-export const ADD_DATA = 'ADD_DATA';
-export const REMOVE_DATA = 'REMOVE_DATA';
-
-
 export const GET_PRODUCTS = 'GET_PRODUCTS';
 export const PUT_TO_STORE_DATA = 'PUT_TO_STORE_DATA';
 export const FAILED_PROCESSING_DATA = 'FAILED_PROCESSING_DATA';
@@ -16,3 +8,4 @@ export const DELETE_PRODUCT_FROM_BASKET = 'DELETE_PRODUCT_FROM_BASKET';
 export const CHANGE_PRODUCT_IN_BASKET = 'CHANGE_PRODUCT_IN_BASKET';
 
 export const CHECKOUT = 'CHECKOUT';
+export const SUBMIT_DATA = 'SUBMIT_DATA';

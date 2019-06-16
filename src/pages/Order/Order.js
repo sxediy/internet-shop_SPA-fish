@@ -1,21 +1,24 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { REQUEST_DATA } from 'store/actionTypes';
+import { PageTitle } from 'components/PageTitle/PageTitle';
+import { EmptyComponent } from 'components/EmptyComponent/EmptyComponent';
+import { SUBMIT_DATA } from 'store/actionTypes';
 
 import styles from './Order.less';
 
-const Order = ({ func, order }) => {
-  console.log(func, order);
+const Order = ({ submitData, order }) => {
+  console.log(submitData, order);
   return (
     <div className={styles.pageContainer}>
-     null
+      <PageTitle title='Оформление заказа'/>
+      <EmptyComponent />
     </div>
   );
 };
 
 Order.propTypes = {
-  func: PropTypes.func,
+  submitData: PropTypes.func,
   order: PropTypes.object,
 };
 
@@ -28,7 +31,7 @@ const mapStateToProps = ({ order }) => (
 
 const mapDispatchToProps = (dispatch) => (
   {
-    func: () => dispatch({ type: REQUEST_DATA })
+    submitData: () => dispatch({ type: SUBMIT_DATA })
   }
 );
 

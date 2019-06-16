@@ -23,6 +23,8 @@ const Basket = ({
 // eslint-disable-next-line padded-blocks
 }) => {
 
+  const summaryPrice = basket.reduce((accum, current) => accum + current.price * current.count, 0);
+
   const renderDeleteIcon = (product) => (
     <div onClick={() => deleteProduct(product)}>
       <Icon type="delete" />
@@ -41,15 +43,12 @@ const Basket = ({
     </div>
   );
 
-  const renderFooter = () => {
-    const summaryPrice = basket.reduce((accum, current) => accum + current.price * current.count, 0);
-    return (
-      <div className={styles.basketFooter}>
-        <h1>Итого:</h1>
-        <h1>{`${summaryPrice} р.`}</h1>
-      </div>
-    );
-  };
+  const renderFooter = () => (
+    <div className={styles.basketFooter}>
+      <h1>Итого:</h1>
+      <h1>{`${summaryPrice} р.`}</h1>
+    </div>
+  );
 
 
   const renderBasket = () => (
@@ -71,7 +70,7 @@ const Basket = ({
         <div className={styles.basketProgress}>
           <Progress percent={100} size="small" strokeColor="#84aff4" status="success" />
         </div>
-        <CheckoutButton funcClick={checkout} path={'/order'}/>
+        <CheckoutButton funcClick={() => checkout(basket, summaryPrice)} path={'/order'}/>
       </div>
     </Fragment>
   );
@@ -102,7 +101,7 @@ const mapDispatchToProps = (dispatch) => (
   {
     deleteProduct: (product) => dispatch({ type: DELETE_PRODUCT_FROM_BASKET, payload: product }),
     changeProduct: (product) => dispatch({ type: CHANGE_PRODUCT_IN_BASKET, payload: product }),
-    checkout: () => dispatch({ type: CHECKOUT }),
+    checkout: (basket, summaryPrice) => dispatch({ type: CHECKOUT, payload: { basket, summaryPrice } }),
   }
 );
 
