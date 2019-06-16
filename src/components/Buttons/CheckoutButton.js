@@ -11,7 +11,7 @@ const CheckoutButton = ({ funcClick, path }) => (
     size="large"
     onClick={funcClick}
   >
-    <Link to={path}><h3>Checkout</h3></Link>
+    <Link to={path}><h3>Перейти к оформлению заказа</h3></Link>
   </Button>
 );
 

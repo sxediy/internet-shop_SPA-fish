@@ -7,7 +7,5 @@ function* sagaPutToStoreData() {
 }
 
 export default function* () {
-  yield takeEvery(
-    'GET_PRODUCTS', sagaPutToStoreData,
-  );
+  yield takeEvery('GET_PRODUCTS', sagaPutToStoreData);
 }

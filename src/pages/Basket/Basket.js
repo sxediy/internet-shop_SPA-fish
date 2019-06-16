@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import {
   Table,
   Icon,
-  Progress
+  Progress,
 } from 'antd';
 import { CheckoutButton } from 'components/Buttons/CheckoutButton';
 import { EmptyComponent } from 'components/EmptyComponent/EmptyComponent';
@@ -49,7 +49,6 @@ const Basket = ({
       <h1>{`${summaryPrice} р.`}</h1>
     </div>
   );
-
 
   const renderBasket = () => (
     <Fragment>

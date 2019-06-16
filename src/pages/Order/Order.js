@@ -1,33 +1,47 @@
 import React, { Fragment } from 'react';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { PageHeader, message } from 'antd';
 import { PageTitle } from 'components/PageTitle/PageTitle';
-import { EmptyComponent } from 'components/EmptyComponent/EmptyComponent';
-import { SUBMIT_DATA } from 'store/actionTypes';
+// import { EmptyComponent } from 'components/EmptyComponent/EmptyComponent';
+import { CLEAR_DATA } from 'store/actionTypes';
 import OrderForm from './OrderForm';
-
 import styles from './Order.less';
 
-const Order = ({ submitData, order }) => {
+
+const Order = ({ clearData, order }) => {
+  const onSubmit = () => {
+    message.success('Списибо за покупку!', 5);
+    clearData();
+  };
+
   const renderOrder = () => (
     <Fragment>
       <PageTitle title='Оформление заказа' />
       <div className={styles.orderContainer}>
-        <OrderForm onSubmit={submitData}/>
+        <OrderForm onSubmit={onSubmit}/>
       </div>
     </Fragment>
   );
 
-  console.log(submitData, order);
   return (
     <div className={styles.pageContainer}>
-      {Object.keys(order).length > 0 ? renderOrder() : <EmptyComponent /> }
+      {/* {Object.keys(order).length > 0 ? renderOrder() : <EmptyComponent /> } */}
+      {Object.keys(order).length > 0 ? renderOrder()
+        : <Link to={'/products'}>
+          <PageHeader
+            title="Назад к странице с товарами"
+            onBack={() => null}
+          />
+        </Link>
+      }
     </div>
   );
 };
 
 Order.propTypes = {
-  submitData: PropTypes.func,
+  clearData: PropTypes.func,
   order: PropTypes.object,
 };
 
@@ -40,7 +54,7 @@ const mapStateToProps = ({ order }) => (
 
 const mapDispatchToProps = (dispatch) => (
   {
-    submitData: () => dispatch({ type: SUBMIT_DATA })
+    clearData: () => dispatch({ type: CLEAR_DATA })
   }
 );
 

@@ -9,7 +9,7 @@ const BuyButton = ({ funcClick }) => (
     block
     onClick={funcClick}
   >
-    <p>Buy</p>
+    <p>В корзину</p>
   </Button>
 );
 

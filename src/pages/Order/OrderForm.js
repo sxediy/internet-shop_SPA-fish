@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Field, reduxForm } from 'redux-form';
+// import { SubmitButton } from 'components/Buttons/SubmitButton';
 
 const OrderForm = ({ handleSubmit }) => (
   <form onSubmit={handleSubmit}>
@@ -16,7 +17,8 @@ const OrderForm = ({ handleSubmit }) => (
       <label htmlFor="phone">Phone</label>
       <Field name="phone" component="input" type="text" />
     </div>
-    <button type="submit">Submit</button>
+    {/* <SubmitButton /> */}
+    <button type="submit">Подтвердить заказ</button>
   </form>
 );
 
