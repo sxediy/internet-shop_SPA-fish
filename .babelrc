@@ -1,25 +1,37 @@
 {
-  "presets": ["@babel/preset-env", "@babel/preset-react"],
+  "presets": [
+    "@babel/preset-env",
+    "@babel/preset-react"
+  ],
   "plugins": [
-    "transform-class-properties",
-    ["@babel/plugin-transform-runtime", {
-      "regenerator": true
-    }],
-    ["import", { 
-      "libraryName": "antd", 
-      "libraryDirectory": "lib",
-      "style": true 
-    }],
-    ["module-resolver", {
-      "alias": {
-        "components": "./src/components",
-        "pages": "./src/pages",
-        "services": "./src/services",
-        "store": "./src/store",
-        "src": "./src"
+    "@babel/plugin-proposal-class-properties",
+    [
+      "@babel/plugin-transform-runtime",
+      {
+        "regenerator": true
       }
-    }],
-    "transform-es2015-destructuring",
-    "transform-object-rest-spread"
+    ],
+    [
+      "import",
+      {
+        "libraryName": "antd",
+        "libraryDirectory": "lib",
+        "style": true
+      }
+    ],
+    [
+      "module-resolver",
+      {
+        "alias": {
+          "components": "./src/components",
+          "pages": "./src/pages",
+          "services": "./src/services",
+          "store": "./src/store",
+          "src": "./src"
+        }
+      }
+    ],
+    "@babel/plugin-transform-destructuring",
+    "@babel/plugin-proposal-object-rest-spread"
   ]
 }
