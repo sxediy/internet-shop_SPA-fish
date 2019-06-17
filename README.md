@@ -12,3 +12,14 @@
 ✔   npm i
 
 ✔   npm start
+
+
+### Сборка статики для дэв и прода
+
+✔   npm run dev
+✔   npm run prod
+
+
+### Linting
+
+✔   npm run lint 
