@@ -26,7 +26,7 @@ const Basket = ({
   const summaryPrice = basket.reduce((accum, current) => accum + current.price * current.count, 0);
 
   const renderDeleteIcon = (product) => (
-    <div onClick={() => deleteProduct(product)}>
+    <div className={styles.deleteItemContainer} onClick={() => deleteProduct(product)}>
       <Icon type="delete" />
     </div>
   );

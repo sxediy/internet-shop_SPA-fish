@@ -9,7 +9,12 @@ import styles from './NavigationBar.less';
 const NavigationBar = (props) => (
   <header className={styles.navBar}>
     {props.routes.map(route => (
-      <NavLink exact={route.isExact} activeClassName='active' key={route.path} to={route.path}>{route.name}</NavLink>
+      <NavLink
+        exact={route.isExact}
+        activeClassName={styles.active}
+        key={route.path}
+        to={route.path}>{route.name}
+      </NavLink>
     ))}
     <NavLink to={'/basket'}>
       <BasketBadge count={ props.basket.reduce((ac, cur) => cur.count + ac, 0) }/>
