@@ -10,11 +10,11 @@ const renderField = ({
   type,
   meta: { touched, error }
 }) => (
-  <div className= {styles.inputFormContainer}>
+  <div>
     <label>{label}</label>
     <div>
       <input
-        className= {styles.inputFormContainer}
+        className= {styles.inputForm}
         {...input}
         placeholder={label}
         type={type}
