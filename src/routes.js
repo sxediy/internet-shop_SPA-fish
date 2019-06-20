@@ -3,7 +3,8 @@ import Basket from './pages/Basket/Basket';
 import Order from './pages/Order/Order';
 
 
-export const routes = [
+// eslint-disable-next-line no-unused-vars
+export const routes = (props) => [
   {
     isNavBar: true,
     isExact: true,
@@ -13,14 +14,14 @@ export const routes = [
     isPrivate: false,
   },
   {
-    isNavBar: true,
+    isNavBar: false,
     path: '/basket',
     name: 'Корзина',
     component: Basket,
     isPrivate: false,
   },
   {
-    isNavBar: true,
+    isNavBar: false,
     path: '/order',
     name: 'Оформление заказа',
     component: Order,

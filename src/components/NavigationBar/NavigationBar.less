@@ -1,5 +1,7 @@
 .navBar {
     height: 64px;
+    padding-left: 5%;
+    padding-right: 5%;
     display: flex;
     align-items: center;
     border: whitesmoke solid 1px;
@@ -10,6 +12,9 @@
       padding: 20px 20px 20px 30px;
       font-size: 22px;
       cursor: pointer;
+      &:first-child{
+        flex-grow: 1;
+      }
     }
     
   
@@ -20,4 +25,5 @@
     a:hover {
       color: #b2b0b0;
     }
+
   }

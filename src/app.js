@@ -1,4 +1,6 @@
 import React from 'react';
+import { connect } from 'react-redux';
+
 import {
   BrowserRouter as Router,
   Route, Switch,
@@ -9,10 +11,11 @@ import { routes } from './routes';
 import NavigationBar from './components/NavigationBar/NavigationBar';
 import styles from './app.less';
 
-const App = () => {
+const App = (props) => {
+  const routesConnectProps = routes(props);
   const renderSwitch = () => (
     <Switch>
-      {routes.map(route => (
+      {routesConnectProps.map(route => (
         <Route
           key={route.path}
           exact={route.isExact}
@@ -27,7 +30,9 @@ const App = () => {
   return (
     <Router>
       <main className={styles.appContent}>
-        <NavigationBar routes={routes.filter(route => route.isNavBar)}/>
+        <NavigationBar
+          routes={routesConnectProps.filter(route => route.isNavBar)}
+        />
         <Layout.Content>
           {renderSwitch()}
         </Layout.Content>
@@ -36,4 +41,6 @@ const App = () => {
   );
 };
 
-export default App;
+const mapStateToProps = (props) => props;
+
+export default connect(mapStateToProps)(App);
