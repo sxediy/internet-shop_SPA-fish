@@ -29,9 +29,9 @@ const renderField = ({
   meta: { touched, error }
 }) => (
   <div className={styles.field}>
-    <div className={styles.label}>
+    {label ? <div className={styles.label}>
       <label>{label}</label>
-    </div>
+    </div> : null}
     <div className={styles.inputContainer}>
       <input
         className= {classNames(
