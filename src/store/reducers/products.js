@@ -4,7 +4,7 @@ import {
   PUT_PRODUCT_TO_BASKET,
   CHANGE_PRODUCT_IN_BASKET,
   DELETE_PRODUCT_FROM_BASKET,
-  CLEAR_DATA,
+  CLEAR_PRODUCTS,
 } from '../actionTypes';
 
 
@@ -16,11 +16,6 @@ const products = (state = { products: [] }, action) => {
     case PUT_TO_STORE_DATA:
       return {
         ...state,
-        // ToDo
-        // почему-то useEffect со вторым аргументом
-        // виде пустого массива не предотвращает повторные вызовы после,
-        // а должна вызываться только при монтировании компонента, но не при обновлении,
-        // поэтому проверка длины массива
         products: state.products.length > 0 ? state.products : payload,
         copyFromServer: payload,
       };
@@ -45,7 +40,7 @@ const products = (state = { products: [] }, action) => {
       ));
       return { ...state, products: newStateAfterDelete };
 
-    case CLEAR_DATA:
+    case CLEAR_PRODUCTS:
       return { ...state, products: state.copyFromServer };
 
     default:

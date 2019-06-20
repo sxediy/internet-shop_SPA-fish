@@ -1,19 +1,28 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { PageHeader, message } from 'antd';
 // import { PageTitle } from 'components/PageTitle/PageTitle';
 import { EmptyComponent } from 'components/EmptyComponent/EmptyComponent';
-import { CLEAR_DATA } from 'store/actionTypes';
+import { CLEAR_ORDER, CLEAR_BASKET, CLEAR_PRODUCTS } from 'store/actionTypes';
 import OrderForm from './OrderForm';
 import styles from './Order.less';
 
 
-const Order = ({ clearData, order }) => {
+const Order = ({
+  clearOrder,
+  clearBasket,
+  clearProducts,
+  order
+}) => {
+  useEffect(() => clearOrder, []);
+
   const onSubmit = (submitDATA) => {
     message.success('Списибо за покупку!', 5);
-    clearData();
+    clearOrder();
+    clearBasket();
+    clearProducts();
     console.log('Данные на сервер', { ...order, submitDATA });
   };
 
@@ -44,7 +53,9 @@ const Order = ({ clearData, order }) => {
 };
 
 Order.propTypes = {
-  clearData: PropTypes.func,
+  clearOrder: PropTypes.func,
+  clearBasket: PropTypes.func,
+  clearProducts: PropTypes.func,
   order: PropTypes.object,
 };
 
@@ -57,7 +68,9 @@ const mapStateToProps = ({ order }) => (
 
 const mapDispatchToProps = (dispatch) => (
   {
-    clearData: () => dispatch({ type: CLEAR_DATA })
+    clearOrder: () => dispatch({ type: CLEAR_ORDER }),
+    clearBasket: () => dispatch({ type: CLEAR_BASKET }),
+    clearProducts: () => dispatch({ type: CLEAR_PRODUCTS })
   }
 );
 

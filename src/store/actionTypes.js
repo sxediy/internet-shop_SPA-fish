@@ -10,7 +10,7 @@ export const CHANGE_PRODUCT_IN_BASKET = 'CHANGE_PRODUCT_IN_BASKET';
 export const CHECKOUT = 'CHECKOUT';
 export const SUBMIT_DATA = 'SUBMIT_DATA';
 
-// export const CLEAR_ORDER = 'CLEAR_ORDER';
-// export const CLEAR_BASKET = 'CLEAR_BASKET';
 
-export const CLEAR_DATA = 'CLEAR_DATA';
+export const CLEAR_PRODUCTS = 'CLEAR_PRODUCTS';
+export const CLEAR_BASKET = 'CLEAR_BASKET';
+export const CLEAR_ORDER = 'CLEAR_ORDER';

@@ -1,4 +1,4 @@
-import { CHECKOUT, CLEAR_DATA } from '../actionTypes';
+import { CHECKOUT, CLEAR_ORDER } from '../actionTypes';
 
 
 const order = (state = {}, action) => {
@@ -7,7 +7,7 @@ const order = (state = {}, action) => {
       const { basket: shipment, summaryPrice } = action.payload;
       return { ...state, shipment, summaryPrice };
     }
-    case CLEAR_DATA:
+    case CLEAR_ORDER:
       return {};
     default:
       return state;
