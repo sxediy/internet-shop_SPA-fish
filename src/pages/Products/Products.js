@@ -37,6 +37,7 @@ const Products = ({ getProducts, putProductToBasket, products }) => {
               <Merce
                 product={product}
                 funcClick={() => putProductToBasket(product)}
+                buttonName={product.isChosen ? 'Хочу ещё' : 'В корзину'}
               />
             </Col>
           ))
@@ -67,7 +68,7 @@ Products.propTypes = {
 };
 
 
-const mapStateToProps = ({ products }) => (
+const mapStateToProps = ({ products: { products } }) => (
   {
     products,
   }
