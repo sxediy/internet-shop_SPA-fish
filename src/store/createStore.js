@@ -1,4 +1,5 @@
-import { applyMiddleware, createStore, compose } from 'redux';
+import { applyMiddleware, createStore } from 'redux';
+import { composeWithDevTools } from 'redux-devtools-extension';
 import createSagaMiddleware from 'redux-saga';
 import rootreducer from './reducers';
 import sagas from './sagas';
@@ -7,13 +8,17 @@ import { loadState, saveState } from './localStorage';
 const initialState = loadState();
 const sagaMiddleware = createSagaMiddleware();
 
-const createStoreWithMiddleware = compose(
+const composeEnhancers = composeWithDevTools({
+  name: 'MyApp',
+  actionsBlacklist:
+  ['@@redux-form/CHANGE', '@@redux-form/FOCUS', '@@redux-form/BLUR', '@@redux-form/UPDATE_SYNC_ERROR']
+});
+
+const createStoreWithMiddleware = composeEnhancers(
   applyMiddleware(sagaMiddleware)
 )(createStore);
 
-const store = createStoreWithMiddleware(rootreducer, initialState,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-);
+const store = createStoreWithMiddleware(rootreducer, initialState);
 
 store.subscribe(() => {
   saveState({
