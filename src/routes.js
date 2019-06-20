@@ -3,8 +3,7 @@ import Basket from './pages/Basket/Basket';
 import Order from './pages/Order/Order';
 
 
-// eslint-disable-next-line no-unused-vars
-export const routes = (props) => [
+export const routes = [
   {
     isNavBar: true,
     isExact: true,
