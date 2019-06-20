@@ -1,8 +1,26 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Field, reduxForm } from 'redux-form';
+import { createTextMask } from 'redux-form-input-masks';
+import classNames from 'classnames';
+
 import { SubmitButton } from 'components/Buttons/SubmitButton';
 import styles from './Order.less';
+
+const myCustomMaskDefinitions = {
+  9: {
+    regExp: /[9]/,
+  },
+  0: {
+    regExp: /[0-9]/
+  }
+};
+
+const phoneMask = createTextMask({
+  pattern: '(900) 000-0000',
+  maskDefinitions: myCustomMaskDefinitions,
+});
+
 
 const renderField = ({
   input,
@@ -10,11 +28,16 @@ const renderField = ({
   type,
   meta: { touched, error }
 }) => (
-  <div>
-    <label>{label}</label>
-    <div>
+  <div className={styles.field}>
+    <div className={styles.label}>
+      <label>{label}</label>
+    </div>
+    <div className={styles.inputContainer}>
       <input
-        className= {styles.inputForm}
+        className= {classNames(
+          { [styles.inputForm]: type !== 'tel' },
+          { [styles.inputFormPhone]: type === 'tel' }
+        )}
         {...input}
         placeholder={label}
         type={type}
@@ -46,7 +69,14 @@ const OrderForm = ({ handleSubmit, invalid }) => (
       </div>
       <div className={styles.fieldContainer}>
         <label htmlFor="phone">Мобильный телефон</label>
-        <Field name="phone" component={renderField} type="number" />
+        {/* <Field name="phone" component={renderField} type="number" /> */}
+        <Field
+          label='+7'
+          name="phone"
+          component={renderField}
+          type="tel" {...phoneMask}
+          className={styles.phoneInput}
+        />
       </div>
     </div>
     <div className={styles.buttonContainer}>
@@ -64,19 +94,19 @@ OrderForm.propTypes = {
 const validate = (values) => {
   const errors = {};
   if (!values.name) {
-    errors.name = 'Обязательно для заполнения';
+    errors.name = 'Введите имя из 4-х или более символов';
   } else if (values.name.length < 4) {
     errors.name = 'Введите имя из 4-х или более символов';
   }
   if (!values.email) {
-    errors.email = 'Обязательно для заполнения';
+    errors.email = 'Введите корректный формат email адреса';
   } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
     errors.email = 'Введите корректный формат email адреса';
   }
   if (!values.phone) {
-    errors.phone = 'Обязательно для заполнения';
-  } else if (!/^[7]{1}[9]{1}[0-9]{9}$/i.test(values.phone)) {
-    errors.phone = 'Введите 11 цифр номера телефона формата 79XXXXXXXXX';
+    errors.phone = 'Введите 10 цифр формата 9XXXXXXXXX';
+  } else if (!/^[9]{1}[0-9]{9}$/i.test(values.phone)) {
+    errors.phone = 'Введите 10 цифр формата 9XXXXXXXXX';
   }
   return errors;
 };

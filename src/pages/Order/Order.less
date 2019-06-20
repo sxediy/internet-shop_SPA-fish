@@ -10,15 +10,17 @@
 }
 
 .formContainer {
+    width: 400px;
     display: flex;
     flex-direction: column;
-    width: 400px;
-    align-items: stretch;
+    align-items: center;
+    border: 1px dotted #d9d9d9;
 }
 
 .allFieldsContainer{
-    border: 1px dotted #d9d9d9;
-    padding-bottom: 3%;
+    display: flex;
+    flex-direction: column;
+    width: 250px;
 }
 
 .fieldContainer{
@@ -30,8 +32,28 @@
 }
 
 
+.field{
+    display: flex;
+    align-items: baseline;
+}
+
+.label{
+    margin-right: 2%;
+}
+
+.inputContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
 .inputForm{
-    width: 380px;
+    width: 250px;
+}
+
+.inputFormPhone{
+   width: 220px;
 }
 
 
@@ -43,6 +65,7 @@
 .buttonContainer{
     padding-top: 10%;
     padding-bottom: 10%;
+    width: 90%;
 }
 
 .emptyContainer {
