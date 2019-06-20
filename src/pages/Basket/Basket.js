@@ -23,7 +23,7 @@ const Basket = ({
 // eslint-disable-next-line padded-blocks
 }) => {
 
-  const summaryPrice = basket.reduce((accum, current) => accum + current.price * current.count, 0);
+  const summaryPrice = basket.reduce((accum, current) => accum + (current.price * current.count), 0).toFixed(2);
 
   const renderDeleteIcon = (product) => (
     <div className={styles.deleteItemContainer} onClick={() => deleteProduct(product)}>
@@ -63,7 +63,7 @@ const Basket = ({
           <Column title="Наименование" key="product" dataIndex="product" width="200px"/>
           <Column title="Описание" key="description" dataIndex="description" width="600px"/>
           <Column align="center" title="Количество" key="count" render={(product) => renderCount(product)}/>
-          <Column align="center" title="Сумма" key="price" render={({ price, count }) => price * count} />
+          <Column align="center" title="Сумма" key="price" render={({ price, count }) => (price * count).toFixed(2)} />
           <Column align="center" key="action" render={(product) => renderDeleteIcon(product)} />
         </Table>
         <div className={styles.basketProgress}>
