@@ -2,6 +2,7 @@ import React, { Fragment, useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { GET_PRODUCTS } from 'store/actionTypes';
+import { timeIsExpireInMinutes } from 'services/validateTime';
 import {
   Row,
   Col,
@@ -12,7 +13,12 @@ import { PageTitle } from 'components/PageTitle/PageTitle';
 import { EmptyComponent } from 'components/EmptyComponent/EmptyComponent';
 import styles from './Products.less';
 
-const Products = ({ getProducts, putProductToBasket, products }) => {
+const Products = ({
+  getProducts,
+  putProductToBasket,
+  products,
+  timeOfLoadData
+}) => {
   const pageSize = 12;
   const [currentPage, setNewCurrentPage] = useState(1);
   const from = pageSize * (currentPage - 1);
@@ -23,8 +29,14 @@ const Products = ({ getProducts, putProductToBasket, products }) => {
     setNewCurrentPage(currentPage - 1);
   }
 
+  const didMount = () => {
+    if (timeIsExpireInMinutes(timeOfLoadData)) {
+      getProducts();
+    }
+  };
+
   useEffect(() => {
-    getProducts();
+    didMount();
   }, []);
 
   const renderProducts = () => (
@@ -65,19 +77,21 @@ Products.propTypes = {
   getProducts: PropTypes.func,
   putProductToBasket: PropTypes.func,
   products: PropTypes.array,
+  timeOfLoadData: PropTypes.string,
 };
 
 
-const mapStateToProps = ({ products: { products } }) => (
+const mapStateToProps = ({ products: { products, timeOfLoadData } }) => (
   {
     products,
+    timeOfLoadData,
   }
 );
 
 const mapDispatchToProps = (dispatch) => (
   {
     getProducts: () => dispatch({ type: GET_PRODUCTS }),
-    putProductToBasket: (product) => dispatch({ type: 'PUT_PRODUCT_TO_BASKET', payload: product })
+    putProductToBasket: (product) => dispatch({ type: 'PUT_PRODUCT_TO_BASKET', payload: product }),
   }
 );
 

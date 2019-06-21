@@ -2,28 +2,29 @@ import React, { Fragment, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { timeIsExpireInMinutes } from 'services/validateTime';
 import { PageHeader, message } from 'antd';
-// import { PageTitle } from 'components/PageTitle/PageTitle';
 import { EmptyComponent } from 'components/EmptyComponent/EmptyComponent';
-import { CLEAR_ORDER, CLEAR_BASKET, CLEAR_PRODUCTS } from 'store/actionTypes';
+import { CLEAR_ORDER, RESET_STATE } from 'store/actionTypes';
 import OrderForm from './OrderForm';
 import styles from './Order.less';
 
 
 const Order = ({
   clearOrder,
-  clearBasket,
-  clearProducts,
-  order
+  resetState,
+  order,
+  timeOfLoadData,
 }) => {
   useEffect(() => clearOrder, []);
 
   const onSubmit = (submitDATA) => {
-    message.success('Списибо за покупку!', 5);
-    clearOrder();
-    clearBasket();
-    clearProducts();
-    console.log('Данные на сервер', { ...order, submitDATA });
+    resetState();
+    if (!timeIsExpireInMinutes(timeOfLoadData)) {
+      message.success('Списибо за покупку!', 5);
+      return console.log('Данные на сервер', { ...order, submitDATA });
+    }
+    return message.warning('Данные устарели!', 5);
   };
 
   const renderOrder = () => (
@@ -54,23 +55,23 @@ const Order = ({
 
 Order.propTypes = {
   clearOrder: PropTypes.func,
-  clearBasket: PropTypes.func,
-  clearProducts: PropTypes.func,
+  resetState: PropTypes.func,
   order: PropTypes.object,
+  timeOfLoadData: PropTypes.string,
 };
 
 
-const mapStateToProps = ({ order }) => (
+const mapStateToProps = ({ order, products: { timeOfLoadData } }) => (
   {
-    order
+    order,
+    timeOfLoadData,
   }
 );
 
 const mapDispatchToProps = (dispatch) => (
   {
     clearOrder: () => dispatch({ type: CLEAR_ORDER }),
-    clearBasket: () => dispatch({ type: CLEAR_BASKET }),
-    clearProducts: () => dispatch({ type: CLEAR_PRODUCTS })
+    resetState: () => dispatch({ type: RESET_STATE }),
   }
 );
 

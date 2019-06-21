@@ -14,3 +14,5 @@ export const SUBMIT_DATA = 'SUBMIT_DATA';
 export const CLEAR_PRODUCTS = 'CLEAR_PRODUCTS';
 export const CLEAR_BASKET = 'CLEAR_BASKET';
 export const CLEAR_ORDER = 'CLEAR_ORDER';
+
+export const RESET_STATE = 'RESET_STATE';

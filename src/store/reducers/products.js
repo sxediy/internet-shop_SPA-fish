@@ -1,4 +1,7 @@
 /* eslint-disable no-case-declarations */
+
+import moment from 'moment';
+
 import {
   PUT_TO_STORE_DATA,
   PUT_PRODUCT_TO_BASKET,
@@ -14,10 +17,12 @@ const products = (state = { products: [] }, action) => {
   switch (action.type) {
 
     case PUT_TO_STORE_DATA:
+      const timeOfLoadData = moment().format();
       return {
         ...state,
-        products: state.products.length > 0 ? state.products : payload,
+        products: payload,
         copyFromServer: payload,
+        timeOfLoadData,
       };
 
     case PUT_PRODUCT_TO_BASKET:
@@ -41,7 +46,7 @@ const products = (state = { products: [] }, action) => {
       return { ...state, products: newStateAfterDelete };
 
     case CLEAR_PRODUCTS:
-      return { ...state, products: state.copyFromServer };
+      return { ...state, products: (state.copyFromServer ? state.copyFromServer : []) };
 
     default:
       return state;

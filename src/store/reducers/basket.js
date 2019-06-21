@@ -11,9 +11,6 @@ const basket = (state = [], action) => {
   const findIndexExistProduct = state.findIndex(findFunc);
   const isExist = findIndexExistProduct !== -1;
   const filterFunc = product => product.id !== payloadID;
-  // const mapFunc = product => (
-  //   product.id !== payloadID ? product : action.payload
-  // );
 
   const reduceFunc = (accum, current) => {
     if (current.id !== payloadID) {
@@ -37,7 +34,6 @@ const basket = (state = [], action) => {
     }
 
     case CHANGE_PRODUCT_IN_BASKET: {
-      // return [...state.map(mapFunc)];
       return [...state.reduce(reduceFunc, [])];
     }
 
